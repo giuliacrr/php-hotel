@@ -56,20 +56,57 @@
 </head>
 
 <body>
-  
-    <!---->
     <div class="container">
+      <!--Filters-->
+      <div class="mb-5">
+      <form method="GET">
+      <div>
+        <h1 class="text-center mt-3">Php Hotels</h1>
+        <!--Parcheggio-->
+        <div>
+          <label class="fw-bold mt-5">Parking</label>
+          <select name="park" class="form-select" aria-label="Default select example">
+            <option selected value="all">All</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+        <!--Voto-->
+        <div>
+          <label class="fw-bold mt-5">Rating >=</label>
+          <select name="rate" class="form-select" aria-label="Default select example">
+            <option value="1">1 star</option>
+            <option value="2">2 stars</option>
+            <option value="3">3 stars</option>
+            <option value="4">4 stars</option>
+            <option value="5">5 stars</option>
+          </select>
+        </div>
+        <div class="d-flex justify-content-center"><button type="submit" class="btn btn-primary mt-2">Submit</button></div>
+      </div>
+    </form>
+      </div>
+
+      <!--Hotels-->
+      <div>
+      <h2 class="mt-4 mb-2">Results:</h2>
       <table class="table">
         <thead>
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Parking</th>
-            <th scope="col">Vote</th>
+            <th scope="col">Rating</th>
             <th scope="col">Distance from center</th>
           </tr>
         </thead>
         <tbody>
-        <?php foreach($hotels as $hotel){ ?>
+        <?php foreach($hotels as $hotel){ 
+          if ( 
+              $_GET["park"] == $hotel ["parking"] && $_GET["rate"] <= $hotel["vote"]
+              || $_GET["rate"] <= $hotel["vote"] && $_GET ["park"]== "all"
+            ){
+          ?>
+          <!-- -->
           <tr>
             <!--Nomi-->
             <td><?php echo $hotel["name"] ?></td>
@@ -80,9 +117,10 @@
             <!--Distanza dal centro-->
             <td><?php echo $hotel["distance_to_center"] ?> km</td>
           </tr>
-        <?php } ?>
+        <?php } }?>
         </tbody>
       </table>
+      </div>
     </div>
   
 </body>
