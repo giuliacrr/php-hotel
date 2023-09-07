@@ -101,8 +101,8 @@
         </thead>
         <tbody>
         <?php foreach($hotels as $hotel){ 
-          if ( 
-              $_GET["park"] == $hotel ["parking"] && $_GET["rate"] <= $hotel["vote"]
+          if ( !$_GET
+              ||$_GET["park"] == $hotel ["parking"] && $_GET["rate"] <= $hotel["vote"]
               || $_GET["rate"] <= $hotel["vote"] && $_GET ["park"]== "all"
             ){
           ?>
